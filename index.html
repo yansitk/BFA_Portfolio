@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yan Sitkevich | Portfolio</title>
+
+  <!--
+    SIMPLE SJSU DMA BFA PORTFOLIO TEMPLATE
+
+    THIS VERSION IS SIMPLE:
+    - About section
+    - ART 74 image sections
+    - ART 75 video links
+    - Personal work images
+    - click images to open them bigger
+
+    HOW TO EDIT:
+    1. Change the text in the intro and about section
+    2. Put your ART 74 image paths in the ART 74 data below
+    3. Put your ART 75 Google Drive links in the ART 75 data below
+    4. Put your personal work image paths in the personal section below
+
+    IMAGE PATH EXAMPLES:
+    - images/art74/logo1.jpg
+    - images/personal/work1.jpg
+    - or a full image URL
+
+    GOOGLE DRIVE VIDEO LINK EXAMPLE:
+    https://drive.google.com/file/d/FILE_ID/view?usp=sharing
+  -->
+
+  <style>
+    :root {
+      --bg: #f5f2eb;
+      --card: #fffdf8;
+      --text: #1b1b1b;
+      --muted: #6d655c;
+      --line: #dbd3c8;
+      --accent: #2f4c75;
+      --shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+      --radius: 18px;
+      --max: 1100px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 0 auto;
+    }
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(245, 242, 235, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(219, 211, 200, 0.8);
+    }
+
+    .nav {
+      min-height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      color: var(--text);
+    }
+
+    .hero {
+      padding: 56px 0 24px;
+    }
+
+    .hero-box,
+    .box,
+    .gallery-item,
+    .video-item {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-box {
+      padding: 34px;
+    }
+
+    .box {
+      padding: 24px;
+    }
+
+    .eyebrow {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 4.7vw, 3.8rem);
+      line-height: 1.06;
+      margin-bottom: 12px;
+    }
+
+    .intro {
+      max-width: 720px;
+      color: #3a342e;
+      margin-bottom: 0;
+    }
+
+    .section {
+      padding: 18px 0 24px;
+    }
+
+    .section-title {
+      font-size: clamp(1.45rem, 3vw, 2rem);
+      margin-bottom: 8px;
+    }
+
+    .section-text {
+      color: var(--muted);
+      max-width: 760px;
+      margin-bottom: 18px;
+    }
+
+    .subsection {
+      margin-bottom: 30px;
+    }
+
+    .subsection h3 {
+      font-size: 1.15rem;
+      margin-bottom: 14px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .gallery-item {
+      overflow: hidden;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      background: #ede5da;
+      cursor: zoom-in;
+    }
+
+    .caption {
+      padding: 12px 14px;
+      font-size: 0.94rem;
+      color: #3d3731;
+    }
+
+    .video-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .video-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 18px;
+    }
+
+    .video-title {
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+
+    .video-meta {
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    .video-link,
+    .video-link-disabled {
+      white-space: nowrap;
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-weight: 700;
+      font-size: 0.92rem;
+    }
+
+    .video-link {
+      background: #eef2f8;
+      color: var(--accent);
+    }
+
+    .video-link-disabled {
+      background: #eef2f8;
+      color: var(--accent);
+      opacity: 0.55;
+      pointer-events: none;
+    }
+
+    .footer {
+      padding: 18px 0 46px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(10, 9, 8, 0.8);
+      padding: 18px;
+      z-index: 200;
+    }
+
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lightbox-inner {
+      width: min(1200px, 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 12px;
+    }
+
+    .lightbox-close {
+      border: none;
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-weight: 700;
+      cursor: pointer;
+      background: #ffffff;
+    }
+
+    .lightbox img {
+      width: auto;
+      max-width: 100%;
+      max-height: 84vh;
+      object-fit: contain;
+      border-radius: 16px;
+      background: white;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    @media (max-width: 900px) {
+      .gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 680px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 12px 0;
+      }
+
+      .hero-box,
+      .box {
+        padding: 20px;
+      }
+
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .video-item {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container nav">
+      <!-- CHANGE YOUR NAME HERE -->
+      <a class="brand" href="#top">YAN SITKEVICH</a>
+
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#art74">ART 74</a>
+        <a href="#art75">ART 75</a>
+        <a href="#personal">Personal Work</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container">
+        <div class="hero-box">
+          <div class="eyebrow">SJSU DMA BFA Portfolio</div>
+          <h1>Portfolio</h1>
+
+          <!-- CHANGE THIS SHORT INTRO -->
+          <p class="intro">
+            This website shows selected work from ART 74 and ART 75 at San José State University
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <div class="box">
+          <h2 class="section-title">About</h2>
+
+          <!-- CHANGE THIS ABOUT TEXT -->
+          <p>
+            This portfolio is organized around work made in ART 74 and ART 75 at SJSU. The ART 74 section includes image based projects. The ART 75 section includes video projects with links to watch them. At the end there is also a small personal work section.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="art74">
+      <div class="container">
+        <h2 class="section-title">ART 74</h2>
+        <p class="section-text">Image work from ART 74. Click any image to open it larger.</p>
+        <div id="art74Sections"></div>
+      </div>
+    </section>
+
+    <section class="section" id="art75">
+      <div class="container">
+        <h2 class="section-title">ART 75</h2>
+        <p class="section-text">Video work from ART 75. Each link opens the video in a new tab.</p>
+        <div class="video-list" id="art75Videos"></div>
+      </div>
+    </section>
+
+    <section class="section" id="personal">
+      <div class="container">
+        <h2 class="section-title">Personal Work</h2>
+        <p class="section-text">A small extra section with personal work.</p>
+        <div class="gallery" id="personalGallery"></div>
+      </div>
+    </section>
+  </main>
+
+
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-inner">
+      <button class="lightbox-close" type="button" id="closeLightbox">Close image</button>
+      <img id="lightboxImage" src="" alt="Full size image" />
+    </div>
+  </div>
+
+  <script>
+    /*
+      ============================================================
+      ART 74 IMAGE SECTIONS
+      ============================================================
+
+      HOW TO USE:
+      - title = small text under image
+      - image = image path or full image URL
+    */
+    const art74Sections = [
+      {
+        title: "Logo",
+        images: [
+          { title: "Space Company Logo", image: "/images/LogoPrototype.png" },
+          { title: "Drink Logo", image: "images/AdobeFruitLogo (1).png" }
+        ]
+      },
+      {
+        title: "Glitch",
+        images: [
+          { title: "Retro Glitch", image: "Images/Glitch001.png" },
+          { title: "High Contrast Glitch", image: "Images/Audacity_Glitch_Colored.jpg" },
+          { title: "Low Bitrate Glitch", image: "Images/glitch003notepad++.jpg" }
+        ]
+      },
+      {
+        title: "3D Model",
+        images: [
+          { title: "Isometric Room", image: "Images/Blender_TableChairScene.png" },
+          { title: "Crystal Explosion", image: "Images/isometrit_crystal_atom_energy.png" }
+        ]
+      },
+      {
+        title: "Final",
+        images: [
+          { title: "Playable Environment in UE5", image: "Images/horror.png" }
+        ]
+      }
+    ];
+
+    /*
+      ============================================================
+      ART 75 VIDEOS
+      ============================================================
+
+      HOW TO USE:
+      - title = name of the video
+      - note = small text line
+      - link = Google Drive share link
+    */
+    const art75Videos = [
+      { title: "Nature Cinematic", note: "Video project", link: "https://drive.google.com/file/d/1AAC3ozkLen8khUUg5B_R-Pa9oX6pKxjO/view?usp=sharing" },
+      { title: "Sound Design", note: "Video project", link: "https://drive.google.com/file/d/1ThKVnn9tlUGW2FbiUiwvaQVI4DLbjkwX/view?usp=sharing" },
+      { title: "Mini Movie", note: "Video project", link: "https://drive.google.com/file/d/194itbh0ZssyPZvKTiTIhSRBfyeVxa9MQ/view?usp=sharing" },
+      { title: "Final", note: "Video project", link: "https://drive.google.com/file/d/1d7Pq_wXBTGJWHbrqWC2Ra3XXKKmxrjwI/view?usp=sharing" }
+    ];
+
+    /*
+      ============================================================
+      PERSONAL WORK IMAGES
+      ============================================================
+    */
+    const personalWorkImages = [
+      { title: "Game of Thrones inspired hall", image: "Images/Game of Thrones, Escape of the Dragon Final.png" },
+      { title: "Dark Souls Location Cinematic", image: "Images/ArtoriusAnimation.0087.png" },
+      { title: "Scandinavian Axe", image: "Images/Axe_Wireframe_Render.png" },
+      { title: "Sunlight Sword", image: "Images/sword_03.png" }
+    ];
+
+    // Makes a placeholder image if you have not added a real image yet.
+    function makePlaceholder(title, width = 1200, height = 900) {
+      const svg = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
+          <defs>
+            <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0%" stop-color="#e8dfd4" />
+              <stop offset="100%" stop-color="#dce3ed" />
+            </linearGradient>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#g)" />
+          <rect x="45" y="45" width="${width - 90}" height="${height - 90}" rx="24" fill="none" stroke="#8b8277" stroke-width="3" stroke-dasharray="10 10" />
+          <text x="50%" y="49%" text-anchor="middle" dominant-baseline="middle" font-family="Arial, Helvetica, sans-serif" font-size="40" fill="#473f37">${title}</text>
+          <text x="50%" y="57%" text-anchor="middle" dominant-baseline="middle" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#61584e">Replace with your image</text>
+        </svg>
+      `;
+      return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+    }
+
+    function safeImage(src, title) {
+      return src && src.trim() ? src : makePlaceholder(title);
+    }
+
+    function renderGallery(items) {
+      return items.map((item) => {
+        const src = safeImage(item.image, item.title);
+        return `
+          <div class="gallery-item">
+            <img src="${src}" alt="${item.title}" data-lightbox-src="${src}" />
+            <div class="caption">${item.title}</div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function renderArt74Sections() {
+      const container = document.getElementById("art74Sections");
+      container.innerHTML = art74Sections.map((section) => `
+        <div class="subsection">
+          <h3>${section.title}</h3>
+          <div class="gallery">
+            ${renderGallery(section.images)}
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function renderArt75Videos() {
+      const container = document.getElementById("art75Videos");
+      container.innerHTML = art75Videos.map((item) => {
+        const linkHtml = item.link && item.link.trim()
+          ? `<a class="video-link" href="${item.link}" target="_blank" rel="noopener noreferrer">Open video</a>`
+          : `<span class="video-link-disabled">Add link</span>`;
+
+        return `
+          <div class="video-item">
+            <div>
+              <div class="video-title">${item.title}</div>
+              <div class="video-meta">${item.note}</div>
+            </div>
+            ${linkHtml}
+          </div>
+        `;
+      }).join("");
+    }
+
+    function renderPersonalWork() {
+      const container = document.getElementById("personalGallery");
+      container.innerHTML = renderGallery(personalWorkImages);
+    }
+
+    renderArt74Sections();
+    renderArt75Videos();
+    renderPersonalWork();
+
+    // Lightbox for bigger image view.
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImage = document.getElementById("lightboxImage");
+    const closeLightbox = document.getElementById("closeLightbox");
+
+    function openLightbox(src) {
+      lightboxImage.src = src;
+      lightbox.classList.add("open");
+      document.body.style.overflow = "hidden";
+    }
+
+    function hideLightbox() {
+      lightbox.classList.remove("open");
+      lightboxImage.src = "";
+      document.body.style.overflow = "";
+    }
+
+    document.addEventListener("click", (event) => {
+      const image = event.target.closest("[data-lightbox-src]");
+      if (image) {
+        openLightbox(image.getAttribute("data-lightbox-src"));
+      }
+    });
+
+    closeLightbox.addEventListener("click", hideLightbox);
+
+    lightbox.addEventListener("click", (event) => {
+      if (event.target === lightbox) hideLightbox();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") hideLightbox();
+    });
+  </script>
+</body>
+</html>
